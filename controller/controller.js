@@ -2,7 +2,7 @@ const {
     loginUtil,
     registerUtil,
     listUsers
-} = require('./util');
+} = require('../util/util');
 
 const login = (req, res) => {
     loginUtil(req, res);

@@ -1,9 +1,9 @@
-const User = require('./models/User');
+const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const {
     schemaLogin,
     schemaRegister
-} = require('./joiSchema');
+} = require('../joiSchema');
 
 
 const loginUtil = async (req, res) => {
