@@ -1,23 +1,26 @@
 const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
-    name: {
+    ownerName: {
         type: String,
         required: true,
-        min: 6,
-        max: 255
+        max: 150
     },
     userName: {
         type: String,
         required: true,
-        min: 3,
         max: 255
     },
-    doc: {
+    ownerId: {
         type: String,
         required: true,
-        min: 6,
         max: 20
+    },
+    maxTransferAmount: {
+        type: Number,
+        required: true,
+        minlength: 6,
+        maxlength: 8
     },
     email: {
         type: String,
@@ -28,14 +31,16 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minlength: 6
+        max: 4,
+        min: 4    //4 pass
     },
-    nroCuenta: {
-        type: String,
+    ownerAccounts: {
+        type: Array,
         required: true,
         min: 11,
         max: 11
-    }  
+    },
+  
 })
 
 module.exports = mongoose.model('User', userSchema);

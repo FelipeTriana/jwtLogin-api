@@ -1,8 +1,7 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const {
-    schemaLogin,
-    schemaRegister
+    schemaLogin
 } = require('../joiSchema');
 
 
@@ -46,21 +45,16 @@ const loginUtil = async (req, res) => {
 }
 
 const registerUtil = async (req, res) => {
-    //Se validan los datos del body con Joi antes de crear un usuario
-    const {
-        error
-    } = schemaRegister.validate(req.body);
-    if (error) return res.status(400).json({
-        error: error.details[0].message
-    })
-
+ 
     const user = new User({
-        name: req.body.name,
+        ownerName: req.body.ownerName,
         userName: req.body.userName,
-        doc: req.body.doc,
+        ownerId: req.body.ownerId,
+        maxTransferAmount: req.body.maxTransferAmount, //
         email: req.body.email,
         password: req.body.password,
-        nroCuenta: req.body.nroCuenta
+        ownerAccounts: req.body.ownerAccounts
+
     });
     try {
         const saveUser = await user.save();
