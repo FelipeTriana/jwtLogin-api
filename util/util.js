@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const configcn = require('../config');
 const jwt = require('jsonwebtoken');
 const {
     schemaLogin
@@ -39,7 +40,7 @@ const loginUtil = async (req, res) => {
         password: user.password,
         ownerAccounts: user.ownerAccounts,
         id: user._id 
-    }, process.env.TOKEN_SECRET)
+    }, configcn.TOKEN_SECRET)
 
     res.header('auth-token', token).json({
         error: null,

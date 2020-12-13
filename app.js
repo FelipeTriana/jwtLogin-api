@@ -1,4 +1,5 @@
 const express = require('express');
+const configcn = require('./config');
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
 const authRoutes = require('./routes');
@@ -14,7 +15,7 @@ app.use(bodyparser.urlencoded({
 app.use(bodyparser.json());
 
 // Conexión a la base de datos
-const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.qrku5.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${configcn.USER}:${configcn.PASSWORD}@cluster0.qrku5.mongodb.net/${configcn.DBNAME}?retryWrites=true&w=majority`;
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true
