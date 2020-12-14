@@ -2,6 +2,7 @@ const express = require('express');
 const configcn = require('./config');
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
+const cors = require('cors');
 const authRoutes = require('./routes');
 const validarToken = require('./token-validation/validate-token');
 const admin = require('./token-validation/admin');
@@ -29,7 +30,7 @@ app.use('/api/user', authRoutes);
 
 //Middleware que valida el token y protege las rutas, si el token es valido va a pasar al admin que nos llevara a las rutas
 app.use('/api/admin', validarToken, admin);
-
+app.use(cors);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
