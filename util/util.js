@@ -33,11 +33,9 @@ const loginUtil = async (req, res) => {
     //El payload esta formado por el nombre del user y el id asignado por mongodb, la segunda parte es la variable de entorno TOKEN_SECRET
     const token = jwt.sign({
         ownerName: user.ownerName,
-        userName: user.userName,
         ownerId: user.ownerId,
         maxTransferAmount: user.maxTransferAmount,
         email: user.email,
-        password: user.password,
         ownerAccounts: user.ownerAccounts,
         id: user._id 
     }, configcn.TOKEN_SECRET)
@@ -50,7 +48,7 @@ const loginUtil = async (req, res) => {
     })
 
 }
-
+ 
 const registerUtil = async (req, res) => {
  
     const user = new User({
