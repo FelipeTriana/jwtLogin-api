@@ -21,7 +21,7 @@ app.use(bodyparser.urlencoded({
 app.use(bodyparser.json());
 
 // Conexión a la base de datos
-const uri = `mongodb+srv://${configcn.USER}:${configcn.PASSWORD}@cluster0.qrku5.mongodb.net/${configcn.DBNAME}?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://root:root@cluster0.anjrj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true
