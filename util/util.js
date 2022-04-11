@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const {
     schemaLogin
 } = require('../joiSchema');
+const { header } = require('express/lib/request');
 
 
 const loginUtil = async (req, res) => {
@@ -37,13 +38,18 @@ const loginUtil = async (req, res) => {
         edad: user.edad,
         id: user._id
     }, configcn.TOKEN_SECRET)
-
-    res.header('auth-token', token).json({
+    res.set({
+        'auth-token': token
+      })
+    /*res.header('auth-token', token).json({
         error: null,
         data: {
             token
         }
-    })
+    })*/
+    res.redirect('/api/user');//Se añadio esto
+    
+    
 
 }
  
@@ -58,10 +64,12 @@ const registerUtil = async (req, res) => {
     });
     try {
         const saveUser = await user.save();
-        res.json({
+        /*res.json({
             error: null,
             data: saveUser
-        })
+        })*/
+        req.flash('success_msg', 'Registro exitoso!');
+        res.redirect('/api/user/users/signin'); //Se añadio esto
     } catch (error) {
         res.status(400).json({
             error
